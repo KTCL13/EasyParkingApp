@@ -10,6 +10,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyParkingApp">
         <activity
+            android:name=".Register"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_register"
+            android:theme="@style/Theme.EasyParkingApp.NoActionBar" />
+        <activity
+            android:name=".Login"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.EasyParkingApp.NoActionBar" />
+        <activity
+            android:name=".Bienvenida"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true"
+            android:label="@string/title_activity_bienvenida"
+            android:theme="@style/Theme.EasyParkingApp.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
@@ -20,6 +44,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
