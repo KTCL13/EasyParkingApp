@@ -30,4 +30,6 @@
     <string name="title_activity_register">Register</string>
     <string name="Name">Name</string>
     <string name="ConfirmPassword">Confirm Password</string>
+    <string name="Back">Back</string>
+    <string name="ForgotPassword">Forgort Password?</string>
 </resources>
