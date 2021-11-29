@@ -1,7 +1,10 @@
 package com.example.easyparkingapp;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,11 +12,19 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
+import android.widget.Toast;
 
 import com.example.easyparkingapp.databinding.ActivityLoginBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -38,6 +49,7 @@ public class Login extends AppCompatActivity {
      */
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
+    FirebaseAuth autentificador;
     private View mContentView;
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
@@ -105,7 +117,7 @@ public class Login extends AppCompatActivity {
     private ActivityLoginBinding binding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
@@ -127,10 +139,38 @@ public class Login extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         binding.dummyButton.setOnTouchListener(mDelayHideTouchListener);
-        binding.loginButton.setOnClickListener(v ->{
-            Intent home= new Intent(this,MainActivity.class);
-            startActivity(home);
+
+        binding.loginButton.setOnClickListener(v -> {
+            String usuario = binding.editTextTextEmailAddress.getText().toString();
+            String contraseña = binding.editTextTextPassword.getText().toString();
+            if(usuario.isEmpty()||contraseña.isEmpty()){
+                Snackbar.make(v,R.string.usuarioOContraseñaInvalido,Snackbar.LENGTH_LONG).show();
+            }else{
+                autentificador.signInWithEmailAndPassword(usuario, contraseña)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d(TAG, "signInWithEmail:success");
+                                    FirebaseUser user = autentificador.getCurrentUser();
+                                    Intent home = new Intent(Login.this,MainActivity.class);
+                                    startActivity(home);
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                    Toast.makeText(Login.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+
+                                // ...
+                            }
+                        });
+            }
+
+
         });
+        autentificador = FirebaseAuth.getInstance();
         binding.backButton.setOnClickListener(v ->{
             Intent welcome= new Intent(this,Bienvenida.class);
             startActivity(welcome);

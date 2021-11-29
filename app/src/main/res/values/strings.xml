@@ -32,4 +32,6 @@
     <string name="ConfirmPassword">Confirm Password</string>
     <string name="Back">Back</string>
     <string name="ForgotPassword">Forgort Password?</string>
+    <string name="usuarioOContraseñaInvalido">Usuario, nombre o contraseña invalido</string>
+    <string name="errorRegistro">Error creando usuario en bd contacte administrador</string>
 </resources>

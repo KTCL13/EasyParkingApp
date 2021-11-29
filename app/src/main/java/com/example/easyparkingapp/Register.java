@@ -1,7 +1,10 @@
 package com.example.easyparkingapp;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,11 +12,21 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
+import android.widget.Toast;
 
 import com.example.easyparkingapp.databinding.ActivityRegisterBinding;
+import com.example.easyparkingapp.persistence.entidades.Usuario;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -39,6 +52,8 @@ public class Register extends AppCompatActivity {
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
     private View mContentView;
+    private FirebaseAuth autentificador;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override
@@ -114,26 +129,55 @@ public class Register extends AppCompatActivity {
         mVisible = true;
         mControlsView = binding.fullscreenContentControls;
         mContentView = binding.fullscreenContent;
+        binding.registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.registerButton.setEnabled(false);
+                String usuario = binding.editTextTextEmailAddress.getText().toString();
+                String contraseña = binding.editTextTextPassword.getText().toString();
+                String nombre = binding.editTextTextPersonName.getText().toString();
+                if (usuario.isEmpty() || contraseña.isEmpty() || nombre.isEmpty()) {
+                    Snackbar.make(v, R.string.usuarioOContraseñaInvalido, Snackbar.LENGTH_LONG).show();
+                } else {
+                    autentificador.createUserWithEmailAndPassword(usuario, contraseña)
+                            .addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.d(TAG, "createUserWithEmail:success");
+                                        FirebaseUser user = autentificador.getCurrentUser();
+                                        String uId = user.getUid();
+                                        Usuario userCreado = new Usuario(uId, nombre, usuario);
+                                        db.collection("usuarios").add(userCreado);
+                                        Intent login = new Intent(Register.this,Login.class);
+                                        startActivity(login);
 
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                        Toast.makeText(getApplicationContext(), "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+
+
+                                }
+                            });
+                }
+
+            }
+        });
+        binding.backButton.setOnClickListener(v -> {
+            Intent welcome = new Intent(this, Bienvenida.class);
+            startActivity(welcome);
+        });
+        autentificador = FirebaseAuth.getInstance();
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 toggle();
             }
-        });
-
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        binding.dummyButton.setOnTouchListener(mDelayHideTouchListener);
-        binding.backButton.setOnClickListener(v ->{
-            Intent welcome= new Intent(this,Bienvenida.class);
-            startActivity(welcome);
-        });
-        binding.registerButton.setOnClickListener(v ->{
-            Intent login= new Intent(this,Login.class);
-            startActivity(login);
         });
     }
 
