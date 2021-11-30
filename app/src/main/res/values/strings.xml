@@ -34,4 +34,7 @@
     <string name="ForgotPassword">Forgort Password?</string>
     <string name="usuarioOContraseñaInvalido">Usuario, nombre o contraseña invalido</string>
     <string name="errorRegistro">Error creando usuario en bd contacte administrador</string>
+    <string name="menu_mapa">Mapa</string>
+    <string name="menu_profile">Perfil</string>
+    <string name="menu_parking">Parqueaderos</string>
 </resources>
