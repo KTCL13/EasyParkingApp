@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.profile.ProfileFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <EditText
+            android:id="@+id/profileEmail"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textPersonName"
+            android:shadowColor="@color/black"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#121212"
+            android:textColorHighlight="#000000"
+            android:textColorHint="#000000"
+            android:textColorLink="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/profileNumber"
+            app:layout_constraintStart_toStartOf="@+id/profileNumber"
+            app:layout_constraintTop_toBottomOf="@+id/profileName"
+            app:layout_constraintVertical_bias="0.032"
+            tools:layout_editor_absoluteY="473dp" />
+
+        <EditText
+            android:id="@+id/profileNumber"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000000"
+            android:ems="10"
+            android:hint="Number"
+            android:inputType="textPersonName"
+            android:shadowColor="@color/black"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#121212"
+            android:textColorHighlight="#000000"
+            android:textColorHint="#000000"
+            android:textColorLink="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/logoutButton"
+            app:layout_constraintStart_toStartOf="@+id/logoutButton"
+            app:layout_constraintTop_toBottomOf="@+id/profileName"
+            app:layout_constraintVertical_bias="0.225" />
+
+        <EditText
+            android:id="@+id/profileName"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="352dp"
+            android:backgroundTint="#000000"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:shadowColor="@color/black"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#121212"
+            android:textColorHighlight="#000000"
+            android:textColorHint="#000000"
+            android:textColorLink="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/profileEmail"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/profileEmail"
+            app:layout_constraintTop_toBottomOf="@+id/imageUser"
+            app:layout_constraintVertical_bias="0.69" />
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="143dp"
+            android:layout_height="52dp"
+            android:backgroundTint="#C14E02"
+            android:shadowColor="#000000"
+            android:text="Log out"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#000000"
+            android:textColorHint="#000000"
+            android:textColorLink="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profileNumber"
+            app:layout_constraintVertical_bias="0.324"
+            app:strokeColor="#000000"
+            tools:layout_editor_absoluteX="134dp"
+            tools:layout_editor_absoluteY="571dp" />
+
+        <ImageView
+            android:id="@+id/imageUser"
+            android:layout_width="211dp"
+            android:layout_height="236dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.074"
+            tools:srcCompat="@tools:sample/avatars" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

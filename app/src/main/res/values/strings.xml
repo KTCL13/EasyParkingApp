@@ -37,4 +37,7 @@
     <string name="menu_mapa">Mapa</string>
     <string name="menu_profile">Perfil</string>
     <string name="menu_parking">Parqueaderos</string>
+    <string name="logOut">Quieres Cerrar Sesion?</string>
+    <string name="yes">si</string>
+    <string name="no">No</string>
 </resources>

@@ -31,9 +31,9 @@
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.easyparkingapp.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:name="com.example.easyparkingapp.ui.profile.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
 
 
     <fragment
