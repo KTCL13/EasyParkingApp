@@ -49,7 +49,6 @@ public class ParkingFragment extends Fragment {
 
         recyclerViewParking.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        ParkingAdapter<Parking>firestoreRecyclerOptions=
         getParkingsFromFirebase();
         // Inflate the layout for this fragment
         return view;
