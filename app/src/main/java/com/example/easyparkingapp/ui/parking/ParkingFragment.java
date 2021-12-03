@@ -29,7 +29,7 @@ import java.util.Queue;
  */
 public class ParkingFragment extends Fragment {
 
-
+    private ParkingAdapter parkingAdapter;
     private RecyclerView recyclerViewParking;
     private ArrayList<Parking> parkingArrayList;
     private FirebaseFirestore mFirestore;
