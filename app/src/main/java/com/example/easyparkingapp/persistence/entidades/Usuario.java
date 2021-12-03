@@ -14,15 +14,25 @@ public class Usuario {
     @NonNull
     private String correo;
 
+    private  String phoneNumber;
 
     public Usuario() {
     }
 
-    public Usuario(@NonNull String id, @NonNull String nombre, @NonNull String correol) {
+    public Usuario(@NonNull String id, @NonNull String nombre, @NonNull String correo,@NonNull String phoneNumber) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
+        this.phoneNumber= phoneNumber;
 
+    }
+    @NonNull
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    @NonNull
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @NonNull

@@ -95,11 +95,11 @@
             android:textColorHint="#000000"
             android:textColorLink="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
+            app:layout_constraintEnd_toEndOf="@+id/editTextNumber"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/editTextNumber"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-            app:layout_constraintVertical_bias="0.032" />
+            app:layout_constraintVertical_bias="0.019" />
 
         <EditText
             android:id="@+id/editTextTextPersonName"
@@ -138,7 +138,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
-            app:layout_constraintVertical_bias="0.253"
+            app:layout_constraintVertical_bias="0.314"
             app:strokeColor="#000000" />
 
         <EditText
@@ -158,9 +158,10 @@
             android:textColorLink="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword1"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/editTextTextPassword1"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
-            app:layout_constraintVertical_bias="0.035" />
+            app:layout_constraintVertical_bias="0.152" />
 
         <EditText
             android:id="@+id/editTextTextPassword1"
@@ -178,9 +179,29 @@
             android:textColorLink="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/registerButton"
+            app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="@+id/registerButton"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
-            app:layout_constraintVertical_bias="0.182" />
+            app:layout_constraintVertical_bias="0.283" />
+
+        <EditText
+            android:id="@+id/editTextNumber"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="262dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:hint="@string/Phone"
+            android:inputType="number"
+            android:textColor="#000000"
+            android:textColorHighlight="#000000"
+            android:textColorHint="#000000"
+            android:textColorLink="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+            app:layout_constraintVertical_bias="0.019" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout

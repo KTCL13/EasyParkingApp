@@ -40,6 +40,7 @@ public class ProfileFragment extends Fragment {
                 binding=FragmentProfileBinding.inflate(inflater,container,false);
                 View root= binding.getRoot();
 
+
                 binding.logoutButton.setOnClickListener(v -> {
                     AlertDialog.Builder confirm= new AlertDialog.Builder(v.getContext());
                     confirm.setMessage(R.string.logOut)

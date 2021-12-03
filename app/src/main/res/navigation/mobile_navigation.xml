@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/nav_map"
-        android:name="com.example.easyparkingapp.MapsFragment"
+        android:name="com.example.easyparkingapp.ui.map.MapsFragment"
         android:label="@string/menu_mapa"
         tools:layout="@layout/fragment_maps" />
 
@@ -38,11 +38,15 @@
 
     <fragment
         android:id="@+id/nav_parking"
-        android:name="com.example.easyparkingapp.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:name="com.example.easyparkingapp.ui.parking.ParkingFragment"
+        android:label="@string/menu_parking"
+        tools:layout="@layout/fragment_parking" />
 
 
-
+    <fragment
+        android:id="@+id/nav_mycar"
+        android:name="com.example.easyparkingapp.ui.Mycar.MyCarFragment"
+        android:label="@string/menu_myCar"
+        tools:layout="@layout/fragment_parking" />
 
 </navigation>

@@ -6,7 +6,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_map"
-            android:icon="@drawable/colombia"
+            android:icon="@drawable/outline_map_black_24dp"
             android:title="@string/menu_mapa" />
         <item
             android:id="@+id/nav_profile"
@@ -14,8 +14,13 @@
             android:title="@string/menu_profile" />
 
         <item
-            android:id="@+id/nav_parking"
+            android:id="@+id/nav_mycar"
             android:icon="@drawable/vehiculoautomovil"
+            android:title="@string/menu_myCar" />
+
+        <item
+            android:id="@+id/nav_parking"
+            android:icon="@drawable/outline_local_parking_black_24dp"
             android:title="@string/menu_parking" />
 
         <item

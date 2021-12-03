@@ -136,7 +136,8 @@ public class Register extends AppCompatActivity {
                 String usuario = binding.editTextTextEmailAddress.getText().toString();
                 String contraseña = binding.editTextTextPassword.getText().toString();
                 String nombre = binding.editTextTextPersonName.getText().toString();
-                if (usuario.isEmpty() || contraseña.isEmpty() || nombre.isEmpty()) {
+                String telefono= binding.editTextNumber.getText().toString();
+                if (usuario.isEmpty() || contraseña.isEmpty() || nombre.isEmpty() ||telefono.isEmpty()) {
                     Snackbar.make(v, R.string.usuarioOContraseñaInvalido, Snackbar.LENGTH_LONG).show();
                 } else {
                     autentificador.createUserWithEmailAndPassword(usuario, contraseña)
@@ -148,7 +149,7 @@ public class Register extends AppCompatActivity {
                                         Log.d(TAG, "createUserWithEmail:success");
                                         FirebaseUser user = autentificador.getCurrentUser();
                                         String uId = user.getUid();
-                                        Usuario userCreado = new Usuario(uId, nombre, usuario);
+                                        Usuario userCreado = new Usuario(uId, nombre, usuario, telefono);
                                         db.collection("usuarios").add(userCreado);
                                         Intent login = new Intent(Register.this,Login.class);
                                         startActivity(login);
