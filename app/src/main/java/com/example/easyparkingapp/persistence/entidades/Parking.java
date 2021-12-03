@@ -1,15 +1,18 @@
 package com.example.easyparkingapp.persistence.entidades;
 
 public class Parking {
+
     private String nombre;
     private String address;
-    private int imageId;
 
-    public Parking(){}
+
+    public Parking() {
+    }
 
     public Parking(String name, String address) {
         this.nombre = name;
         this.address = address;
+
 
     }
 
@@ -29,11 +32,5 @@ public class Parking {
         this.address = address;
     }
 
-    public int getImageId() {
-        return imageId;
-    }
 
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
-    }
 }

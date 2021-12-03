@@ -12,23 +12,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.easyparkingapp.R;
 import com.example.easyparkingapp.persistence.entidades.Parking;
+import com.google.protobuf.StringValue;
 
 import java.util.ArrayList;
 
 public class ParkingAdapter extends RecyclerView.Adapter<ParkingAdapter.ViewHolder> {
 
-    LayoutInflater inflater;
+    Context context;
     ArrayList<Parking> model;
 
     public ParkingAdapter(Context context, ArrayList<Parking> model) {
-        this.inflater = LayoutInflater.from(context);
+        this.context = context;
         this.model = model;
     }
 
     @NonNull
     @Override
     public ParkingAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= inflater.inflate(R.layout.parking_item,parent,false);
+        View view= LayoutInflater.from(context).inflate(R.layout.parking_item,parent,false);
 
         return new ViewHolder(view);
     }
@@ -36,13 +37,11 @@ public class ParkingAdapter extends RecyclerView.Adapter<ParkingAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ParkingAdapter.ViewHolder holder, int position) {
 
-        String nombre=model.get(position).getNombre();
-        String address=model.get(position).getAddress();
-        int imagen=model.get(position).getImageId();
+        Parking parking= model.get(position);
 
-        holder.nombres.setText(nombre);
-        holder.direccion.setText(address);
-        holder.imagen.setImageResource(imagen);
+        holder.nombre.setText(parking.getNombre());
+        holder.address.setText(parking.getAddress());
+
 
     }
 
@@ -51,17 +50,14 @@ public class ParkingAdapter extends RecyclerView.Adapter<ParkingAdapter.ViewHold
         return model.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView nombres,direccion;
-        ImageView imagen;
+        TextView nombre,address;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            nombres=itemView.findViewById(R.id.name_parking);
-            direccion=itemView.findViewById(R.id.address_parking);
-            imagen=itemView.findViewById(R.id.icon_parking);
-
+            nombre=itemView.findViewById(R.id.name_parking);
+            address=itemView.findViewById(R.id.address_parking);
         }
     }
 }
