@@ -1,4 +1,4 @@
-package com.example.easyparkingapp.ui.Mycar;
+package com.example.easyparkingapp.ui.mycar;
 
 import android.content.Context;
 import android.graphics.Color;

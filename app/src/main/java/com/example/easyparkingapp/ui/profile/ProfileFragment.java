@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import com.example.easyparkingapp.Bienvenida;
@@ -23,9 +24,15 @@ import com.example.easyparkingapp.R;
 import com.example.easyparkingapp.databinding.FragmentProfileBinding;
 
 import com.example.easyparkingapp.persistence.entidades.Parking;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -37,6 +44,8 @@ public class ProfileFragment extends Fragment {
     private ProfileViewModel mViewModel;
     private FragmentProfileBinding binding;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+    private String userID;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -52,11 +61,12 @@ public class ProfileFragment extends Fragment {
 
                 mAuth=FirebaseAuth.getInstance();
 
-                FirebaseUser currentUser=mAuth.getCurrentUser();
 
-                binding.profileEmail.setText(currentUser.getEmail());
-                binding.profileName.setText(currentUser.getDisplayName());
-                binding.profileNumber.setText(currentUser.getPhoneNumber());
+                userID=mAuth.getCurrentUser().getUid();
+
+                db=FirebaseFirestore.getInstance();
+
+                fetchdata();
 
                 binding.logoutButton.setOnClickListener(v -> {
                     AlertDialog.Builder confirm= new AlertDialog.Builder(v.getContext());
@@ -82,6 +92,32 @@ public class ProfileFragment extends Fragment {
         return root;
     }
 
+    public void fetchdata(){
+        DocumentReference documentReference=db.collection("usuarios").document(userID);
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                if(documentSnapshot.exists()){
+
+                    binding.profileNumber.setText(documentSnapshot.getString("phoneNumber"));
+                    binding.profileName.setText(documentSnapshot.getString("nombre"));
+                    binding.profileEmail.setText(documentSnapshot.getString("correo"));
+
+                }
+                else
+                    Toast.makeText(getContext().getApplicationContext(),"failed to fetch data", Toast.LENGTH_SHORT).show();
+
+                }
+            })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext().getApplicationContext(),"failed to fetch data", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        }
 
 
     @Override

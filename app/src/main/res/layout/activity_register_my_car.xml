@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.mycar.register.RegisterMyCarActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/registerCarButton"
+            android:layout_width="121dp"
+            android:layout_height="65dp"
+            android:backgroundTint="#C14E02"
+            android:foregroundTint="#FF5722"
+            android:text="Register"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextBrand3"
+            app:layout_constraintVertical_bias="0.291" />
+
+        <EditText
+            android:id="@+id/editTextTextBrand"
+            android:layout_width="229dp"
+            android:layout_height="55dp"
+            android:ems="10"
+            android:hint="Model"
+            android:inputType="textPersonName"
+            android:textColorHint="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.255" />
+
+        <EditText
+            android:id="@+id/editTextTextBrand2"
+            android:layout_width="229dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Plaque"
+            android:inputType="textPersonName"
+            android:textColorHint="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextBrand"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/editTextTextBrand3"
+            android:layout_width="229dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Color"
+            android:inputType="textPersonName"
+            android:textColorHint="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextBrand2"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

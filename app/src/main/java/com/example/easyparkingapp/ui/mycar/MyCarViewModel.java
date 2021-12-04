@@ -1,4 +1,5 @@
-package com.example.easyparkingapp.ui.Mycar;
+package com.example.easyparkingapp.ui.mycar;
+
 
 import androidx.lifecycle.ViewModel;
 

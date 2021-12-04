@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,11 +22,13 @@ import android.widget.Toast;
 import com.example.easyparkingapp.databinding.ActivityRegisterBinding;
 import com.example.easyparkingapp.persistence.entidades.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 /**
@@ -54,6 +57,8 @@ public class Register extends AppCompatActivity {
     private View mContentView;
     private FirebaseAuth autentificador;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private String userId;
+
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override
@@ -137,20 +142,29 @@ public class Register extends AppCompatActivity {
                 String contraseña = binding.editTextTextPassword.getText().toString();
                 String nombre = binding.editTextTextPersonName.getText().toString();
                 String telefono= binding.editTextNumber.getText().toString();
-                if (usuario.isEmpty() || contraseña.isEmpty() || nombre.isEmpty() ||telefono.isEmpty()) {
+                String contraseña2= binding.editTextTextPassword1.getText().toString();
+                if (usuario.isEmpty() || contraseña.isEmpty() || nombre.isEmpty() ||telefono.isEmpty() ||contraseña.isEmpty()) {
                     Snackbar.make(v, R.string.usuarioOContraseñaInvalido, Snackbar.LENGTH_LONG).show();
-                } else {
+                }else if(!contraseña.equals(contraseña2)){
+                    Snackbar.make(v, R.string.passwordissmiss, Snackbar.LENGTH_LONG).show();
+                    }
+                    else {
                     autentificador.createUserWithEmailAndPassword(usuario, contraseña)
                             .addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+                                        userId=autentificador.getCurrentUser().getUid();
                                         // Sign in success, update UI with the signed-in user's information
+                                        DocumentReference documentReference=db.collection("usuarios").document(userId);
                                         Log.d(TAG, "createUserWithEmail:success");
-                                        FirebaseUser user = autentificador.getCurrentUser();
-                                        String uId = user.getUid();
-                                        Usuario userCreado = new Usuario(uId, nombre, usuario, telefono);
-                                        db.collection("usuarios").add(userCreado);
+                                        Usuario userCreado = new Usuario(nombre, usuario, telefono);
+                                        documentReference.set(userCreado).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Log.d(TAG,"onSucces: user profile is created for"+userId);
+                                            }
+                                        });
                                         Intent login = new Intent(Register.this,Login.class);
                                         startActivity(login);
 

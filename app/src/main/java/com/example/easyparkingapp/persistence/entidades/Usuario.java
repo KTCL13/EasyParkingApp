@@ -19,8 +19,8 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(@NonNull String id, @NonNull String nombre, @NonNull String correo,@NonNull String phoneNumber) {
-        this.id = id;
+    public Usuario(@NonNull String nombre, @NonNull String correo,@NonNull String phoneNumber) {
+
         this.nombre = nombre;
         this.correo = correo;
         this.phoneNumber= phoneNumber;
@@ -35,14 +35,6 @@ public class Usuario {
         this.phoneNumber = phoneNumber;
     }
 
-    @NonNull
-    public String getId() {
-        return id;
-    }
-
-    public void setId(@NonNull String id) {
-        this.id = id;
-    }
 
     @NonNull
     public String getNombre() {
